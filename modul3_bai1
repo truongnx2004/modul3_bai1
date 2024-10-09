@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Preview</title>
+    <style>
+        /* Basic styles for the div and images */
+        #image {
+            width: 300px;
+            height: 200px;
+            border: 2px solid black;
+            text-align: center;
+            line-height: 200px;
+            background-color: #f0f0f0;
+        }
+
+        img {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+        }
+
+        img:hover {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Div where the preview will be shown -->
+    <div id="image">
+        Hover over an image below to display here.
+    </div>
+
+    <!-- Image elements with hover events calling the upDate and undo functions -->
+    <img class="previewPic" src="https://via.placeholder.com/150/0000FF/808080?text=Image+1" alt="Blue Image" onmouseover="upDate(this)" onmouseout="undo()">
+    <img class="previewPic" src="https://via.placeholder.com/150/FF0000/FFFFFF?text=Image+2" alt="Red Image" onmouseover="upDate(this)" onmouseout="undo()">
+    <img class="previewPic" src="https://via.placeholder.com/150/FFFF00/000000?text=Image+3" alt="Yellow Image" onmouseover="upDate(this)" onmouseout="undo()">
+    
+    <!-- JavaScript functions -->
+    <script>
+        function upDate(previewPic) {
+            console.log("Alt text: " + previewPic.alt);
+            console.log("Image source: " + previewPic.src);
+
+            // Change the text of the element with the id 'image'
+            document.getElementById("image").innerHTML = previewPic.alt;
+
+            // Change the background image of the element with the id 'image'
+            document.getElementById("image").style.backgroundImage = "url('" + previewPic.src + "')";
+            document.getElementById("image").style.backgroundSize = "cover";
+        }
+
+        function undo() {
+            // Reset the background image of the div with the id 'image'
+            document.getElementById("image").style.backgroundImage = "none";
+
+            // Reset the text of the div with the id 'image'
+            document.getElementById("image").innerHTML = "Hover over an image below to display here.";
+        }
+    </script>
+</body>
+</html>
